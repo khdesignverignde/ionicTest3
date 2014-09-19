@@ -1,0 +1,15 @@
+<ion-view title="ngCordova">
+    <ion-nav-buttons side="left">
+      <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-content>
+        <button class="button" ng-click="vibrate()">vibrate</button>
+        <button class="button" ng-click="device()">device</button>
+        <button class="button" ng-click="scanBarcode()">scanBarcode</button>
+        
+        
+        
+        <div ng-bind-html="output"></div>
+        
+    </ion-content>
+</ion-view>

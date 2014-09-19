@@ -1,0 +1,16 @@
+<ion-view>
+    <ion-nav-buttons side="left">
+      <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-content>
+        <div>TODO write content</div>
+        
+        <ion-list>
+            <ion-item ng-repeat="entry in entries" href="#/">
+                <h3>{{entry.title}}</h3>
+                <p>{{entry.content}}</p>
+            </ion-item>
+        </ion-list>
+        
+    </ion-content>
+</ion-view>
