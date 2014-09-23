@@ -1,0 +1,91 @@
+<ion-view title="ionicUI2">
+    <ion-nav-buttons side="left">
+      <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-content>
+        <h1>CSS</h1>
+        <h2>toggle checkbox</h2>
+        <label class="toggle">
+            
+            <input type="checkbox" value="cb-single">
+            <div class="track">
+              <div class="handle"></div>
+            </div>
+         </label>
+        
+        <ul class="list">
+
+            <li class="item item-toggle">
+               list  item-toggle 1
+               <label class="toggle toggle-assertive">
+                   <input type="checkbox" value="cb-list1">
+                 <div class="track">
+                   <div class="handle"></div>
+                 </div>
+               </label>
+            </li>
+            
+            <li class="item item-toggle">
+               list  item-toggle 1
+               <label class="toggle toggle-dark">
+                   <input type="checkbox" value="cb-list2">
+                 <div class="track">
+                   <div class="handle"></div>
+                 </div>
+               </label>
+            </li>
+        </ul>
+        <ul class="list">
+
+            <li class="item item-checkbox">
+               <label class="checkbox">
+                 <input type="checkbox" value="cb-list3">
+               </label>
+               check 1
+            </li>
+            <li class="item item-checkbox">
+               <label class="checkbox">
+                 <input type="checkbox" value="cb-list4">
+               </label>
+               check 2
+            </li>
+        </ul>
+        
+        <form>
+            <textarea placeholder="text" ng-model="IonicUICtrl.textData.body"></textarea>
+            <p><span>text: </span>{{IonicUICtrl.textData.body}}</p> 
+                <input type="submit" value="submit" />
+        </form>
+        <div class="list">
+
+            <label class="item item-radio">
+                <input type="radio" name="group">
+                <div class="item-content">
+                  Radio 1
+                </div>
+                <i class="radio-icon ion-checkmark"></i>
+            </label>
+            <label class="item item-radio">
+                <input type="radio" name="group">
+                <div class="item-content">
+                  Radio 1
+                </div>
+                <i class="radio-icon ion-checkmark"></i>
+            </label>
+        </div>
+        
+        <div class="range">
+            <i class="icon ion-volume-low"></i>
+            <input type="range" name="volume">
+            <i class="icon ion-volume-high"></i>
+        </div>
+
+        <div class="list">
+          <div class="item range range-positive">
+            <i class="icon ion-ios7-sunny-outline"></i>
+            <input type="range" name="volume" min="0" max="100" value="33">
+            <i class="icon ion-ios7-sunny"></i>
+          </div>
+        </div>
+    </ion-content>
+</ion-view>

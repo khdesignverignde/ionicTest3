@@ -1,0 +1,18 @@
+[
+    {
+        "title": "News 1",
+        "content": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, <br>sed diam nonumy eirmod tempor invidunt ut."
+    },
+    {
+        "title": "News 2",
+        "content": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, <br>sed diam nonumy eirmod tempor invidunt ut."
+    },
+    {
+        "title": "News 3",
+        "content": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, <br>sed diam nonumy eirmod tempor invidunt ut."
+    },
+    {
+        "title": "News 4",
+        "content": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, <br>sed diam nonumy eirmod tempor invidunt ut."
+    }
+]
