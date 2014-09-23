@@ -1,8 +1,11 @@
 <ion-view title="Browse">
   <ion-nav-buttons side="left">
-    <button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
   <ion-content class="has-header scroll-bg">
     <h1>Browse</h1>
+    <button ng-click="show()" class="button button-block button-energized">Show Action Sheet</button>
+    <button on-drag-right="onDragRight()" class="button button-large">drag right</button>
   </ion-content>
+
 </ion-view>

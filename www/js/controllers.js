@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['ionic'])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout, $cordovaVibration) {
     // Form data for the login modal
@@ -46,27 +46,102 @@ angular.module('starter.controllers', [])
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
+    $scope.stateParams = $stateParams;
 })
 
 
-.controller('NewsCtrl', function($scope) {
-    $scope.entries = [
+.controller('NewsCtrl', function($scope, $http) {
+    $scope.entries = [];
+    
+    $http.get('json/newsdata.json').then(
+        function(resp){
+            $scope.entries = resp.data;
+        }, function(err){
+            alert(err);
+        });
+})
+
+.controller('IonicUICtrl', function($scope){
+    $scope.textData = {};
+})
+
+
+.controller('SlideboxCtrl', function($scope){
+    $scope.items = [ 
         {
-            "title": "News 1",
-            "content": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, <br>sed diam nonumy eirmod tempor invidunt ut."
+            "id":1,
+            "title": "title1",
+            "description": "description"
         },
         {
-            "title": "News 2",
-            "content": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, <br>sed diam nonumy eirmod tempor invidunt ut."
+            "id":2,
+            "title": "title2",
+            "description": "description"
         },
         {
-            "title": "News 3",
-            "content": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, <br>sed diam nonumy eirmod tempor invidunt ut."
+            "id":3,
+            "title": "title3",
+            "description": "description"
+        },
+        {
+            "id":4,
+            "title": "title4",
+            "description": "description"
         }
     ];
+    
+    $scope.share = function(item){
+        alert(item.id);
+    };
+    $scope.edit = function(item){
+        alert(item.id);
+    };
+    
+    $scope.moveItem = function(item, fromIndex, toIndex) {
+      //Move the item in the array
+      $scope.items.splice(fromIndex, 1);
+      $scope.items.splice(toIndex, 0, item);
+    };
+    
 })
 
-.controller('NgCordovaCtrl', function($scope, $cordovaVibration, $cordovaDevice, $cordovaBarcodeScanner){
+.controller('ActionSheetCtrl', function($scope, $ionicActionSheet, $timeout) {
+    
+    $scope.onDragRight = function(){
+        alert('dragged');
+    };
+    
+    $scope.show = function() {
+
+      // Show the action sheet
+      var hideSheet = $ionicActionSheet.show({
+        buttons: [
+          { text: '<b>Share</b> This' },
+          { text: 'Move' }
+        ],
+        destructiveText: 'Delete',
+        titleText: 'Modify your album',
+        cancelText: 'Cancel',
+        cancel: function() {
+             // add cancel code..
+           },
+        buttonClicked: function(index) {
+            alert(index);
+          return true;
+        }
+      });
+
+      // For example's sake, hide the sheet after two seconds
+      $timeout(function() {
+        hideSheet();
+      }, 2000);
+
+    };
+ })
+
+.controller('NgCordovaCtrl', function( $scope, $cordovaVibration, $cordovaDevice, 
+                                       $cordovaBarcodeScanner, $cordovaCapture, 
+                                       $cordovaBatteryStatus){
     $scope.output = '';
     
     var generateOutput = {
@@ -75,13 +150,10 @@ angular.module('starter.controllers', [])
             if(!name) name = 'object';
             var str = name + ':<br>---------------------------------------------------------<br>';
             for(var i in obj){str += i + ': ' + ((typeof obj[i] !== 'function') ? obj[i] : '(function)')+ '<br>';}
-            str += '<br><br>';str += $scope.output;$scope.output = str;
-        },
+            str += '<br><br>';str += $scope.output;$scope.output = str;},
         string: function(s){
             var str = 'string:<br>---------------------------------------------------------<br>' + s+ '<br><br>';
-            str += $scope.output;$scope.output = str;
-        }
-    };
+            str += $scope.output;$scope.output = str;}};
     
     
     $scope.vibrate = function(){
@@ -112,9 +184,39 @@ angular.module('starter.controllers', [])
         });
       };
     
+    $scope.captureImage = function() {
+        var options = { limit: 3 };
+
+        $cordovaCapture.captureImage(options).then(function(imageData) {
+          // Success! Image data is here
+          generateOutput.objectProperties(imageData, 'captureImage');
+        }, function(err) {
+          // An error occured. Show a message to the user
+            generateOutput.objectProperties(err, 'captureImage:fail');
+        });
+      };
     
     
-    
+    $cordovaBatteryStatus.onBatteryStatus(function(result) {
+        var batteryLevel = result.level;       // (0 - 100)
+        var isPluggedIn  = result.isPlugged;   // bool
+
+        var o = {
+            batteryLevel: batteryLevel,
+            isPluggedIn: isPluggedIn
+        };
+        generateOutput.objectProperties(o, 'batteryStatus');
+    });
 })
+
+.directive('superElement', function(){
+    return {
+        restrict: 'E', //E für Element (Typ der Direktive)
+        template: '<div class="super-element"><h1 style="text-align: center;">Super Element</h1><p style="text-align: center;">{{text}}</p></div>"', // Template, welches die Direktive lädt
+        controller: function($scope){
+            $scope.text = 'Super element jetzt neu!';
+        }
+    };
+});
 
 ;

@@ -18,6 +18,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
       StatusBar.styleDefault();
     }
   });
+  
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -43,7 +44,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
       url: "/browse",
       views: {
         'menuContent' :{
-          templateUrl: "templates/browse.html"
+          templateUrl: "templates/browse.html",
+          controller: 'ActionSheetCtrl'
         }
       }
     })
@@ -73,7 +75,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
         views: {
             'menuContent':{
                 templateUrl: "templates/news.html",
-          controller: 'NewsCtrl'
+                controller: 'NewsCtrl'
             }
         }
     })
@@ -83,10 +85,55 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
         views: {
             'menuContent':{
                 templateUrl: "templates/ngCordova.html",
-          controller: 'NgCordovaCtrl'
+                controller: 'NgCordovaCtrl'
             }
         }
-    });
+    })
+    
+    .state('app.ionicUI', {
+        url: "/ionicUI",
+        views:{
+            'menuContent':{
+                templateUrl: "templates/ionicUI.html",
+                controller: 'IonicUICtrl'
+            }
+        }
+    })
+    .state('app.ionicUI2', {
+        url: "/ionicUI2",
+        views:{
+            'menuContent':{
+                templateUrl: "templates/ionicUI2.html",
+                controller: 'IonicUICtrl'
+            }
+        }
+    })
+    .state('app.ionicUI3', {
+        url: "/ionicUI3",
+        views:{
+            'menuContent':{
+                templateUrl: "templates/ionicUI3.html",
+                controller: 'IonicUICtrl'
+            }
+        }
+    })
+    .state('app.slidebox', {
+        url: "/slidebox",
+        views:{
+            'menuContent':{
+                templateUrl: "templates/slidebox.html",
+                controller: 'SlideboxCtrl'
+            }
+        }
+    })
+    .state('app.customDirective', {
+        url: "/customDirective",
+        views:{
+            'menuContent':{
+                templateUrl: "templates/customDirective.html"
+            }
+        }
+    })
     ;
     
   // if none of the above states are matched, use this as the fallback
